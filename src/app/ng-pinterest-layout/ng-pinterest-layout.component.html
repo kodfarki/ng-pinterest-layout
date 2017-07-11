@@ -1,0 +1,6 @@
+<div id="container" style="width: 100%" (window:resize)="positionElements()">
+<!--<div id="container" style="width: 100%" (window:resize)="resized($event)">-->
+  <div *ngFor="let post of posts" class="post">
+    <img src="{{post.images.preview_gif.url}}" style="width: 100%"/>
+  </div>
+</div>
