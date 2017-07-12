@@ -14,8 +14,10 @@ export class PostService {
     }
 
     getPosts() {
+      //console.log(this.http.get(this.url).map(res => res.json()));
         return this.http.get(this.url)
             .map(res => res.json());
+
     }
 
 }

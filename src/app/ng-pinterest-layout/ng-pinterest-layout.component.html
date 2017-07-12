@@ -1,6 +1,10 @@
-<div id="container" style="width: 100%" (window:resize)="positionElements()">
+<div id="container" style="width: 100%" (window:resize)="positionElements();">
 <!--<div id="container" style="width: 100%" (window:resize)="resized($event)">-->
-  <div *ngFor="let post of posts" class="post">
-    <img src="{{post.images.preview_gif.url}}" style="width: 100%"/>
+
+  <div *ngFor="let post of imageArray" class="post">
+    <!--<img src="{{post.images.preview_gif.url}}"  style="width: 100%"/>-->
+    <img src="{{post}}" style="width: 100%" (load)="positionElementsCheck()" />
   </div>
+
 </div>
+

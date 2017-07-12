@@ -1,8 +1,6 @@
 <!--The whole content below can be removed with the new code.-->
 <div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!!
-  </h1>
+  <ng-pinterest-layout *ngIf="postss" [imageArray]="postss"></ng-pinterest-layout>
 </div>
 
-<ng-pinterest-layout *ngIf="posts" [posts]="posts"></ng-pinterest-layout>
+
