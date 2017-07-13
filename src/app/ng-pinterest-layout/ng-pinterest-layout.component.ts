@@ -29,7 +29,7 @@ export class NgPinterestLayout implements OnInit {
   public positionElementsCheck(): void {
     var postslength = AppComponent.$id("container").getElementsByClassName("post").length;
 
-    if (this.postIndex == postslength-1) {
+    if (this.postIndex == postslength - 1) {
       console.log("halo");
       //this.positionElements();
       this.positionElements();
@@ -50,10 +50,10 @@ export class NgPinterestLayout implements OnInit {
         post.setAttribute("style", value);
 
         let positionInfo = post.getBoundingClientRect();
-        //this.negativeCheck(post.getBoundingClientRect());
-        console.log("[positionInfo] top:" + positionInfo.top + ", left: " + positionInfo.left + ", bottom: " + positionInfo.bottom + ", right: " + positionInfo.right + ", positionInfo.height: " + positionInfo.height);
+        this.negativeCheck(post.getBoundingClientRect());
+        //console.log("[positionInfo] top:" + positionInfo.top + ", left: " + positionInfo.left + ", bottom: " + positionInfo.bottom + ", right: " + positionInfo.right + ", positionInfo.height: " + positionInfo.height);
 
-        this.leftColumnHeight = positionInfo.bottom;
+        this.leftColumnHeight =  Math.abs(positionInfo.bottom);
         if (this.rightColumnHeight < this.leftColumnHeight) {
           this.currentColumn = 1;
           this.left = positionInfo.right;
@@ -61,7 +61,7 @@ export class NgPinterestLayout implements OnInit {
         } else {
           this.currentColumn = 0;
           this.left = 0;
-          this.top = positionInfo.bottom;
+          this.top = Math.abs(positionInfo.bottom);
         }
       } else if (this.currentColumn == 1) {
         let value = "position: absolute; top: " + this.top + "px; left: " + this.left + "px;";
@@ -69,12 +69,12 @@ export class NgPinterestLayout implements OnInit {
         //console.log(value);
 
         let positionInfo = post.getBoundingClientRect();
-        console.log("[positionInfo] top:" + positionInfo.top + ", left: " + positionInfo.left + ", bottom: " + positionInfo.bottom + ", right: " + positionInfo.right + ", positionInfo.height: " + positionInfo.height);
+        // console.log("[positionInfo] top:" + positionInfo.top + ", left: " + positionInfo.left + ", bottom: " + positionInfo.bottom + ", right: " + positionInfo.right + ", positionInfo.height: " + positionInfo.height);
 
-        this.rightColumnHeight = positionInfo.bottom;
+        this.rightColumnHeight = Math.abs(positionInfo.bottom);
         if (this.rightColumnHeight < this.leftColumnHeight) {
           this.currentColumn = 1;
-          this.top = positionInfo.bottom;
+          this.top = Math.abs(positionInfo.bottom);
         } else {
           this.currentColumn = 0;
           this.left = 0;
@@ -84,11 +84,12 @@ export class NgPinterestLayout implements OnInit {
     }
   }
 
-  private negativeCheck(positionInfo)
-  {
-    if(positionInfo.top ||  positionInfo.left || positionInfo.height || positionInfo.width || positionInfo.right || positionInfo.bottom < 0)
-    {
-      console.log("selam");
+  private negativeCheck(positionInfo) {
+    if (positionInfo.top < 0 || positionInfo.left < 0 || positionInfo.height < 0 || positionInfo.width < 0 || positionInfo.right < 0 || positionInfo.bottom < 0) {
+      console.log("t :" + positionInfo.top);
+      console.log("top :"+ this.top);
+      console.log("left :" + this.left);
+      console.log("b :" + positionInfo.bottom);
     }
   }
 

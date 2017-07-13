@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
           console.log("");
         }
       });
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 15; i++) {
       this.widht = Math.floor(Math.random() * 3);
       this.height = Math.floor(Math.random() * 3);
       this.postss[i] = this.baseURL + "/" + this.cardsWidht[this.widht] + "/" + this.cardsHeight[this.height];
